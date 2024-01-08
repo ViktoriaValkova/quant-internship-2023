@@ -1,7 +1,6 @@
 name: reviewdog
 
-on:
-  push:
+on: push
 
 jobs:
   review:
@@ -9,10 +8,10 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v1
 
     - name: Review code
-      uses: reviewdog/action-setup@v2
+    - uses: reviewdog/action-setup@v1
       with:
         reviewdog_version: latest
     - run: reviewdog -reporter=github-check -runners=golint,govet
