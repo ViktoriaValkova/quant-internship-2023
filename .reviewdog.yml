@@ -7,6 +7,6 @@ runner:
     cmd: go vet $(go list ./... | grep -v /vendor/)
     format: govet
   misspell:
-  cmd: misspell $(git ls-files)
-  errorformat:
-    - "%f:%l:%c: %m"
+    cmd: misspell $(git ls-files)
+    errorformat:
+      - "%f:%l:%c: %m"
