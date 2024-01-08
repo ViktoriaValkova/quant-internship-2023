@@ -11,7 +11,7 @@ jobs:
       uses: actions/checkout@v1
 
     - name: Review code
-    - uses: reviewdog/action-setup@v1
+      uses: reviewdog/action-setup@v1
       with:
         reviewdog_version: latest
     - run: reviewdog -reporter=github-check -runners=golint,govet
