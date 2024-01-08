@@ -6,16 +6,24 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
 
-      - name: Set up Go
-        uses: actions/setup-go@v2
-        with:
-          go-version: '1.21.4'
+    - uses: actions/checkout@v3
 
-      - name: Run Tests
-        run: go test -v ./...
+    - name: Start MongoDB
+      uses: supercharge/mongodb-github-action@1.10.0
+      with:
+        mongodb-replica-set: test-rs
+      
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.21.4'
+        
+    - name: Install dependencies
+      run: go get .
+    
+    - name: Build
+      run: go build -v ./...
 
-      - name: Generate Coverage Report
-        run: go test -coverprofile=coverage.txt -covermode=atomic ./...
+    - name: Generate Coverage Report
+      run: go test -coverprofile=coverage.txt -covermode=atomic ./...
