@@ -1,9 +1,12 @@
 runner:
   golint:
-    cmd: golint
-    format: '%f:%l:%c: %m'
-
+    cmd: golint $(go list ./... | grep -v /vendor/)
+    format: golint
+    level: warning
   govet:
-    cmd: go vet
-    format: '%f:%l:%c: %m'
-
+    cmd: go vet $(go list ./... | grep -v /vendor/)
+    format: govet
+  misspell:
+  cmd: misspell $(git ls-files)
+  errorformat:
+    - "%f:%l:%c: %m"
