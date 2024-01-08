@@ -1,0 +1,9 @@
+runner:
+  golint:
+    cmd: golint
+    format: '%f:%l:%c: %m'
+
+  govet:
+    cmd: go vet
+    format: '%f:%l:%c: %m'
+
