@@ -19,6 +19,11 @@ jobs:
         uses: actions/setup-go@v2
         with:
           go-version: 1.21.4
+      - name: Download previous benchmark data
+        uses: actions/cache@v1
+        with:
+         path: ./cache
+         key: ${{ runner.os }}-benchmark
       - name: run benchmark test
         run: go test ./... -bench=. | tee output.txt
       - name: Store benchmark result
