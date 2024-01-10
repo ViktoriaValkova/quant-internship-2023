@@ -33,7 +33,9 @@ jobs:
           name: My Project Go Benchmark
           tool: 'go'
           output-file-path: output.txt
-          # Access token to deploy GitHub Pages branch
-          github-token: ${{ secrets.PERSONAL_TOKEN}}
-          # Push and deploy GitHub pages branch automatically
-          auto-push: true
+          # Set auto-push to false since GitHub API token is not given
+          auto-push: false
+      # Push gh-pages branch by yourself
+      - name: Push benchmark result
+        run: git push 'https://ViktoriaValkova:${{ secrets.GITHUB_TOKEN }}@github.com/ViktoriaValkova/quant-internship-2023.git' gh-pages:gh-pages
+
