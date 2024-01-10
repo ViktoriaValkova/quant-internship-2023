@@ -11,6 +11,10 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v4
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.10.0
+        with:
+          mongodb-replica-set: test-rs
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
